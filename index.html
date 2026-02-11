@@ -29,8 +29,96 @@
     </style>
   </head>
   <body>
+    <!-- Navbar section -->
+    <navbar
+      class="bg-white/80 backdrop-blur-sm sticky top-0 z-100 shadow-sm border-b border-amber-100"
+    >
+      <div
+        class="container mx-auto flex items-center justify-between py-4 px-4 md:px-0"
+      >
+        <!-- Logo -->
+        <a
+          href="#home"
+          class="group flex items-center text-4xl font-extrabold tracking-tight"
+        >
+          <span class="text-gray-800">S</span>
+          <span
+            class="bg-linear-to-r from-[#e97120] to-[#ff0c0c] bg-clip-text text-transparent"
+            >H</span
+          >
+          <span class="text-gray-800">T</span>
+        </a>
+
+        <div
+          class="hidden md:flex items-center space-x-8 font-medium text-gray-700"
+        >
+          <a href="#home" class="hover:text-amber-600 transition">Home</a>
+          <a href="#featured" class="hover:text-amber-600 transition"
+            >Featured</a
+          >
+          <a href="#great-tea" class="hover:text-amber-600 transition"
+            >Great Tea</a
+          >
+          <a href="#clients" class="hover:text-amber-600 transition">Clients</a>
+          <a href="#news" class="hover:text-amber-600 transition">News</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="#footer-subscribe"
+            class="hidden sm:inline-block text-sm font-semibold text-amber-700 hover:text-amber-900"
+            >Subscribe</a
+          >
+
+          <div class="md:hidden dropdown relative">
+            <button
+              id="mobileMenuBtn"
+              class="text-2xl text-gray-700 hover:text-amber-600 focus:outline-none"
+              aria-label="Menu"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div
+              id="mobileDropdown"
+              class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-lg border border-gray-100 hidden flex-col p-2 z-50"
+            >
+              <a
+                href="#home"
+                class="block px-4 py-2 hover:bg-amber-50 rounded-md"
+                >Home</a
+              >
+              <a
+                href="#featured"
+                class="block px-4 py-2 hover:bg-amber-50 rounded-md"
+                >Featured</a
+              >
+              <a
+                href="#great-tea"
+                class="block px-4 py-2 hover:bg-amber-50 rounded-md"
+                >Great Tea</a
+              >
+              <a
+                href="#clients"
+                class="block px-4 py-2 hover:bg-amber-50 rounded-md"
+                >Clients</a
+              >
+              <a
+                href="#news"
+                class="block px-4 py-2 hover:bg-amber-50 rounded-md"
+                >News</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </navbar>
+
     <!-- Banner Section -->
-    <section class="grid grid-cols-1 md:grid-cols-2 container mx-auto">
+    <section
+      id="home"
+      class="grid grid-cols-1 scroll-mt-20 md:grid-cols-2 container mx-auto"
+    >
       <div class="banner-left space-y-4">
         <h2 class="text-[75px] font-bold">
           It's good <br />
@@ -68,7 +156,7 @@
     </section>
 
     <!-- Featured Section -->
-    <section class="container mx-auto my-[85px]">
+    <section id="featured" class="container scroll-mt-20 mx-auto my-[85px]">
       <!-- Featured Section Header -->
       <div class="max-w-[65%] mx-auto text-center mb-[50px]">
         <h2 class="text-[45px] font-bold">Our Featured Products</h2>
@@ -123,7 +211,8 @@
 
     <!-- Great tea section -->
     <section
-      class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-[85px]"
+      id="great-tea"
+      class="container scroll-mt-20 mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-[85px]"
     >
       <div class="great-tea-left grid grid-cols-2 grid-rows-3 gap-8">
         <div
@@ -171,7 +260,8 @@
 
     <!-- Meet our super clients section -->
     <section
-      class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[75px] lg:gap-8 mb-[85px] rounded-xl bg-linear-to-r from-[#ff8938] to-[#ff0000] p-[70px]"
+      id="clients"
+      class="container scroll-mt-20 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[75px] lg:gap-8 mb-[85px] rounded-xl bg-linear-to-r from-[#ff8938] to-[#ff0000] p-[70px]"
     >
       <div class="meet-our-client-left text-white flex items-center">
         <div class="space-y-4">
@@ -253,7 +343,7 @@
     </section>
 
     <!-- News & Events -->
-    <section class="container mx-auto my-[85px]">
+    <section id="news" class="scroll-mt-20 container mx-auto my-[85px]">
       <!-- Featured Section Header -->
       <div class="max-w-[65%] mx-auto text-center mb-[50px]">
         <h2 class="text-[45px] font-bold">News & Events</h2>
@@ -332,7 +422,7 @@
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-[#ffefe9] p-12">
+    <footer id="footer-subscribe" class="scroll-mt-20 bg-[#ffefe9] p-12">
       <section class="container mx-auto space-y-5">
         <!-- Top Footer -->
         <div class="flex justify-between">
@@ -410,5 +500,27 @@
         </p>
       </section>
     </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("mobileMenuBtn");
+        const dropdown = document.getElementById("mobileDropdown");
+        if (btn && dropdown) {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            dropdown.classList.toggle("hidden");
+          });
+          // close when clicking outside
+          document.addEventListener("click", function (event) {
+            if (
+              !btn.contains(event.target) &&
+              !dropdown.contains(event.target)
+            ) {
+              dropdown.classList.add("hidden");
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
